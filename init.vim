@@ -12,6 +12,9 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"copy to clipboard
+vnoremap <C-y> :'<,'>w !xclip -selection clipboard<Cr><Cr>
+"map <C-y> :w !xclip<CR><CR>
 set mouse=a                 " Enable mouse
 set tabstop=2               " 
 set shiftwidth=2            " 
@@ -42,11 +45,9 @@ au! BufNewFile,BufRead *.json set foldmethod=indent " Change foldmethod for spec
 syntax on
 
 " Enable copying from vim to clipboard
-if has('win32')
-  set clipboard=unnamed  
-else
-  set clipboard=unnamedplus
-endif
+  set clipboard+=unnamedplus
+
+
 
 " Auto reload content changed outside
 au CursorHold,CursorHoldI * checktime
@@ -144,6 +145,9 @@ call plug#begin(stdpath('config').'/plugged')
 " motion
   Plug 'easymotion/vim-easymotion'
 
+" copy past
+Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'roxma/vim-tmux-clipboard'
 call plug#end()
 
 
